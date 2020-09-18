@@ -13,7 +13,7 @@ On the first run - run setup command
 $ ./scripts/setup
 ```
 
-Once the Vagrant provisioners are completed, the Django app should be accessible at http://localhost:8081
+Once the Vagrant provisioners are completed, the Django app should be accessible at http://localhost:8082
 
 
 
