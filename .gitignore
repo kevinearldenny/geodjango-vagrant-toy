@@ -127,3 +127,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+*.doctree
+*.swp
+*.swo
+*.pyc
+*.suo
+*.user
+*.sql3
+*.DS_Store
+*.idea
+.vagrant/
