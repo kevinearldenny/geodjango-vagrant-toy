@@ -130,3 +130,14 @@ dmypy.json
 
 # Log files
 *.log
+
+# Azavea specifics
+*.doctree
+*.swp
+*.swo
+*.pyc
+*.suo
+*.user
+*.sql3
+*.DS_Store
+*.idea
