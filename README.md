@@ -16,6 +16,7 @@ $ ./scripts/setup
 Once the Vagrant provisioners are completed, the Django app should be accessible at http://localhost:8081
 
 
+
 For subsequent runs, you can start the Django development server like
 ```
 $ ./scripts/server
