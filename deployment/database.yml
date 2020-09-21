@@ -1,0 +1,19 @@
+---
+
+# Installs packages/dependencies for database servers
+
+- hosts: all
+
+  become: yes
+
+  pre_tasks:
+    - name: Update APT cache
+      apt: update_cache=yes
+
+  tasks:
+    - name: Initial display message
+      debug: msg="Starting to set up Cicero database server"
+
+  roles:
+    - { role: "cicero.postgresql" }
+    - { role: "cicero.export-sftp" }
