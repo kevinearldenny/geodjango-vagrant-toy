@@ -31,9 +31,6 @@ Vagrant.configure("2") do |config|
     database.vm.provision :ansible do |ansible|
       ansible.compatibility_mode = "2.0"
       ansible.playbook = "deployment/database.yml"
-      ansible.groups = {
-        launch_type => ["database"]
-      }
     end
   end
 
@@ -41,12 +38,11 @@ Vagrant.configure("2") do |config|
    # Django, nginx
   config.vm.define "web" do |web|
 
-    web.vm.network "forwarded_port", guest: 80, host: 81, host_ip: "127.0.0.1"
-    web.vm.network "forwarded_port", guest: 8000, host: 8082, host_ip: "127.0.0.1"
+    web.vm.network "forwarded_port", guest: 80, host: 83, host_ip: "127.0.0.1"
+    web.vm.network "forwarded_port", guest: 8000, host: 8083, host_ip: "127.0.0.1"
     web.vm.network "private_network", type: "dhcp"
 
     web.vm.hostname = 'web'
-    web.vm.network :private_network, ip: ENV.fetch("CICERO_WEB_IP",  "33.33.33.100")
 
     web.vm.synced_folder "src/", "/vagrant/src", type: "nfs"
     web.vm.synced_folder "scripts/", "/vagrant/scripts", type: "nfs"
@@ -63,11 +59,8 @@ Vagrant.configure("2") do |config|
       ansible.compatibility_mode = "2.0"
       ansible.playbook = "deployment/web.yml"
       ansible.extra_vars = {
-        cicero_hostname: "#{Socket.gethostbyname(Socket.gethostname).first}:#{CICERO_WEB_PORT_80}",
+        cicero_hostname: "#{Socket.gethostbyname(Socket.gethostname).first}:8000",
         vm_user: ENV.fetch("USER", "vagrant")
-      }
-      ansible.groups = {
-        launch_type => ["web"]
       }
 
     end

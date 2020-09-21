@@ -15,5 +15,4 @@
       debug: msg="Starting to set up Cicero database server"
 
   roles:
-    - { role: "cicero.postgresql" }
-    - { role: "cicero.export-sftp" }
+    - { role: "azavea.postgresql" }

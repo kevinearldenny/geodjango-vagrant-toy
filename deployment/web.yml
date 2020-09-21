@@ -10,5 +10,4 @@
       apt: update_cache=yes
 
   roles:
-    - { role: "azavea.ruby", when: cicero_development }
     - { role: "azavea.nodejs", when: cicero_development }
