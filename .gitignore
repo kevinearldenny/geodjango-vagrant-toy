@@ -141,3 +141,4 @@ dmypy.json
 *.sql3
 *.DS_Store
 *.idea
+.vagrant/
