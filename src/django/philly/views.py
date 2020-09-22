@@ -18,4 +18,4 @@ def map(request):
           geometry_field='geom',
           fields=('listname',))
 
-    return render(request, 'philly/map.html', {'data': s})
+    return render(request, 'philly/map.html', {'map_data': s})
