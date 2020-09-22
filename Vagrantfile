@@ -25,5 +25,5 @@ Vagrant.configure("2") do |config|
      vb.memory = "1024"
    end
 
-   config.vm.provision :shell, path: "vagrant/install.sh"
+   config.vm.provision :shell, path: "deployment/install.sh"
 end
