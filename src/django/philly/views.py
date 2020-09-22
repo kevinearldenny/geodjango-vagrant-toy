@@ -17,4 +17,5 @@ def map(request):
     s = serialize('geojson', Neighborhood.objects.all(),
           geometry_field='geom',
           fields=('listname',))
+
     return render(request, 'philly/map.html', {'data': s})

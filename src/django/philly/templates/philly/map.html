@@ -22,9 +22,7 @@
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mymap);
 
-    console.log(gj)
-    var geojson = jQuery.parseJSON(gj);
-    console.log(geojson)
+    var geojson = JSON.parse(gj);
     L.geoJSON(geojson, {
         style: function (feature) {
             return 'purple';

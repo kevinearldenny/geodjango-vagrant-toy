@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-vagrant ssh -- -t '/vagrant/src/django/manage.py shell'
+vagrant ssh -c '/vagrant/src/django/manage.py shell'
