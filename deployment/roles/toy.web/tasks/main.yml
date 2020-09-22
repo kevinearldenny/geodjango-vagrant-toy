@@ -1,0 +1,31 @@
+---
+#- name: Add deadsnakes PPA
+#  apt_repository:
+#    repo: ppa:deadsnakes/ppa
+#
+#- name: Install Python
+#  apt: pkg=python{{ python3_version }}={{ python3_package_version }} state=present
+#
+#- name: Install Python development packages
+#  apt: pkg=python{{ python3_version }}-dev={{ python3_package_version }} state=present
+
+- name: Get installed pip version
+  command: "{{ python3_pip_executable }} --version"
+  register: python3_pip_version_output
+  ignore_errors: yes
+  changed_when: false
+
+- name: Install Python library dependencies and prerequisite packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - libcurl4-openssl-dev
+    - libssl-dev
+    - libgdal-dev
+    - python3-gdal
+
+- name: Install python libraries
+  pip: requirements=/vagrant/src/django/requirements.txt
+       executable=/usr/bin/pip3
+       extra_args="--ignore-installed --global-option=build_ext --global-option="-I/usr/include/gdal""

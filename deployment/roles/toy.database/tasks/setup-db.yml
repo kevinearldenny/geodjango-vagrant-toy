@@ -1,0 +1,30 @@
+---
+- name: Make sure template_postgis exists
+  postgresql_db: db=template_postgis state=present encoding=UTF-8 template=template0
+  become_user: postgres
+  register: createdb_template_postgis
+
+- name: Spatially enable the template database
+  command: psql -d template_postgis -c "CREATE EXTENSION IF NOT EXISTS postgis;"
+  when: createdb_template_postgis.changed
+  become_user: postgres
+
+- name: Create admin user
+  command: psql -c "create user admin with password 'fakepassword';"
+  become_user: postgres
+
+- name: Add DB create permissions
+  command: psql -c "alter user admin createdb;"
+  become_user: postgres
+
+- name: Create DB
+  command: psql -c "create database toy;"
+  become_user: postgres
+
+- name: Grant admin privileges
+  command: psql -c "grant all privileges on database toy to admin;"
+  become_user: postgres
+
+- name: Make admin superuser
+  command: psql -c "ALTER ROLE admin SUPERUSER;"
+  become_user: postgres

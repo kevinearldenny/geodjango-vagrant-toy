@@ -12,7 +12,7 @@ end
 Vagrant.configure("2") do |config|
     config.vm.box = "bento/ubuntu-18.04"
     config.vm.network "forwarded_port", guest: 80, host: 81, host_ip: "127.0.0.1"
-    config.vm.network "forwarded_port", guest: 8000, host: 8082, host_ip: "127.0.0.1"
+    config.vm.network "forwarded_port", guest: 8000, host: 8084, host_ip: "127.0.0.1"
     config.vm.network "private_network", type: "dhcp"
     config.vm.synced_folder "src/", "/vagrant/src", type: "nfs"
     config.vm.synced_folder "scripts/", "/vagrant/scripts", type: "nfs"
@@ -25,5 +25,7 @@ Vagrant.configure("2") do |config|
      vb.memory = "1024"
    end
 
-   config.vm.provision :shell, path: "vagrant/install.sh"
+   config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "deployment/web.yml"
+  end
 end
