@@ -23,7 +23,6 @@
     }).addTo(mymap);
 
     var geojson = JSON.parse(document.getElementById('map-data').textContent);
-    console.log(geojson)
     L.geoJSON(geojson, {
         style: function (feature) {
             return 'purple';
