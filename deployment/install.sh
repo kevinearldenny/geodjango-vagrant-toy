@@ -25,7 +25,6 @@ apt-get install gdal-bin libgdal-dev locales binutils python3-gdal -y
 apt-get install python3-psycopg2 -y
 
 # Install PostGIS
-#apt-get install postgresql-10-postgis-2.4 -y
 apt-get install postgis -y
 apt-get install postgresql-10-postgis-2.4-scripts -y
 
