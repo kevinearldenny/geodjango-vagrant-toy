@@ -14,16 +14,15 @@
 
     }
 </style>
-{{ map_data|json_script:"map-data" }}
 <script type="text/javascript">
+    var gj = {{ map_data|safe }};
     var mymap = L.map('mapid').setView([39.95, -75.16], 11);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mymap);
 
-    var geojson = JSON.parse(document.getElementById('map-data').textContent);
-    L.geoJSON(geojson, {
+    L.geoJSON(gj, {
         style: function (feature) {
             return 'purple';
         }
