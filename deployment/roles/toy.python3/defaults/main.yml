@@ -1,0 +1,6 @@
+---
+# defaults file for toy.database
+python3_version: "3.8"
+python3_package_version: "3.8.*"
+python3_development: False
+toy_postgis_version: [2, 3, 4]

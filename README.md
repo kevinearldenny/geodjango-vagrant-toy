@@ -1,5 +1,5 @@
 # geodjango-vagrant-toy
-A spatially enabled Django application leveraging Vagrant for containerization
+A spatially enabled Django application leveraging Vagrant for containerization and Ansible for provisioning
 
 ## System requirements
 
@@ -30,5 +30,3 @@ $ ./scripts/migrate
 
 ### Loading data
 Data is automatically loaded as part of the setup command
-=======
-Removed added files for PR review

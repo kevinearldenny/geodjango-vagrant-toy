@@ -1,0 +1,16 @@
+---
+
+# Installs packages/dependencies for web servers
+
+- hosts: all
+  become: True
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  pre_tasks:
+    - name: Update APT cache
+      apt: update_cache=yes
+
+  roles:
+    - { role: "toy.python3" }
+    - { role: "toy.database" }
+    - { role: "toy.web" }

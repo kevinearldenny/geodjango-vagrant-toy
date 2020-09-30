@@ -1,0 +1,21 @@
+---
+- name: Get installed pip version
+  command: "{{ python3_pip_executable }} --version"
+  register: python3_pip_version_output
+  ignore_errors: yes
+  changed_when: false
+
+- name: Install Python library dependencies and prerequisite packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - libcurl4-openssl-dev
+    - libssl-dev
+    - libgdal-dev
+    - python3-gdal
+
+- name: Install python libraries
+  pip: requirements=/vagrant/src/django/requirements.txt
+       executable=/usr/bin/pip3
+       extra_args="--ignore-installed --global-option=build_ext --global-option='-I/usr/include/gdal'"

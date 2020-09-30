@@ -1,7 +1,6 @@
-from django.contrib import admin
 from django.contrib.gis import admin
 
-from .models import *
+from .models import Neighborhood
 # Register your models here.
 
 admin.site.register(Neighborhood, admin.OSMGeoAdmin)
