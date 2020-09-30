@@ -17,5 +17,5 @@ print(hood_shp)
 
 
 def run(verbose=True):
-    lm = LayerMapping(Neighborhood, str(hood_shp), neighborhood_mapping, transform=False)
+    lm = LayerMapping(Neighborhood, str(hood_shp), neighborhood_mapping, transform=False, unique='name')
     lm.save(strict=False, verbose=verbose)
