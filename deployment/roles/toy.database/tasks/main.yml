@@ -1,27 +1,30 @@
 ---
 - name: Install PostgreSQL
-  apt: pkg="{{ item }}" state=present
-  with_items:
-    - postgresql
-    - libpq-dev
-    - postgresql-client
-    - postgresql-client-common
+  apt:
+    state: present
+    pkg:
+      - postgresql
+      - libpq-dev
+      - postgresql-client
+      - postgresql-client-common
 
 - name: Add UbuntuGIS apt repository
   apt_repository:
     repo: ppa:ubuntugis/ppa
 
-- name: Update APT cache
-  apt: update_cache=yes
-
 - name: Install PostGIS
-  apt: pkg="{{ item }}" state=present
-  with_items:
-    - postgis
-    - postgresql-10-postgis-2.4-scripts
+  apt:
+    state: present
+    update_cache: yes
+    pkg:
+      - postgis
+      - postgresql-10-postgis-2.4-scripts
 
 - name: Install PostgreSQL driver for Python
-  import_tasks: psycopg2.yml
+  pip: name=psycopg2
+       executable=/usr/bin/pip3
+       version=2.8
+       state=present
 
 - name: Create Toy database
   import_tasks: setup-db.yml

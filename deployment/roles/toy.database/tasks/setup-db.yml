@@ -9,22 +9,13 @@
   when: createdb_template_postgis.changed
   become_user: postgres
 
-- name: Create admin user
-  command: psql -c "create user admin with password 'fakepassword';"
+- name: Create postgres database
+  postgresql_db: name="toy"
   become_user: postgres
 
-- name: Add DB create permissions
-  command: psql -c "alter user admin createdb;"
-  become_user: postgres
-
-- name: Create DB
-  command: psql -c "create database toy;"
-  become_user: postgres
-
-- name: Grant admin privileges
-  command: psql -c "grant all privileges on database toy to admin;"
-  become_user: postgres
-
-- name: Make admin superuser
-  command: psql -c "ALTER ROLE admin SUPERUSER;"
+- name: Create postgres user
+  postgresql_user: db="toy"
+                   name="admin"
+                   password="fakepassword"
+                   role_attr_flags=SUPERUSER
   become_user: postgres

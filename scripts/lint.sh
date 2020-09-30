@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-vagrant ssh -- -t 'flake8 --ignore E501 /vagrant/src/django/'
+vagrant ssh -c 'flake8 --ignore E501 /vagrant/src/django/'

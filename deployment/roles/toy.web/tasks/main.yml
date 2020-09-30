@@ -18,4 +18,4 @@
 - name: Install python libraries
   pip: requirements=/vagrant/src/django/requirements.txt
        executable=/usr/bin/pip3
-       extra_args="--ignore-installed --global-option=build_ext --global-option="-I/usr/include/gdal""
+       extra_args="--ignore-installed --global-option=build_ext --global-option='-I/usr/include/gdal'"
